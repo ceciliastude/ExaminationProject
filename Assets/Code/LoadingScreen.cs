@@ -8,6 +8,7 @@ public class LoadingScreen : MonoBehaviour
     public GameObject loadingScreen; // Assign in Inspector
     public Image loadingBarFill;      // Assign in Inspector
     public float loadingFillDuration = 5f; // Total duration to fill the loading bar
+    public string sceneName;
 
     public void LoadScene()
     {
@@ -45,6 +46,6 @@ public class LoadingScreen : MonoBehaviour
         loadingBarFill.fillAmount = 1f;
 
         // Load the next scene
-        SceneManager.LoadScene("Testing Enviroment");
+        SceneManager.LoadScene(sceneName);
     }
 }

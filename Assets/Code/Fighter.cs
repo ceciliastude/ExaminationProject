@@ -22,12 +22,21 @@ public abstract class Fighter : MonoBehaviour
 
     protected int currentAttackIndex = 0;
     public float attackDuration = 0.5f; 
+
+    public static bool canMove = false;
     
 
     protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>(); 
+        StartCoroutine(StartUp());
+    }
+
+    private IEnumerator StartUp(){
+        canMove = false;
+        yield return new WaitForSeconds(10f);
+        canMove = true;
     }
 
     protected virtual void Update()
@@ -87,9 +96,11 @@ public abstract class Fighter : MonoBehaviour
     {
         isSpecialAttacking = true;
         chargeMeterManager.ActivateSpecialAttack(isPlayer); 
+        canMove = false;
         //animator.Play("SpecialAttack"); // Play special attack animation
         yield return new WaitForSeconds(3f); 
         isSpecialAttacking = false;
+        canMove = true;
     }
 
     protected IEnumerator TakenDamage(){

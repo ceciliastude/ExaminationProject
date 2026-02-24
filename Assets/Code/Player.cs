@@ -6,6 +6,36 @@ public class Player : Fighter
     private Vector3 input;
     private Opponent enemy; 
     private bool isCollidingWithEnemy = false; 
+    private Rigidbody rb;
+
+protected override void Start()
+{
+    base.Start();
+    rb = GetComponent<Rigidbody>();
+    enemy = FindObjectOfType<Opponent>();
+}
+
+        private void FixedUpdate()
+        {
+            if (rb == null) return;
+
+            if (Mathf.Abs(input.x) > 0.1f)
+            {
+                isWalking = true;
+                Vector3 newPosition = rb.position + new Vector3(input.x * moveSpeed * Time.fixedDeltaTime, 0f, 0f);
+                rb.MovePosition(newPosition);
+
+                // Optional: flip sprite to face direction
+                if (input.x > 0)
+                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                else if (input.x < 0)
+                    transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                isWalking = false;
+            }
+        }
 
     protected override void Update()
     {
@@ -42,22 +72,14 @@ public class Player : Fighter
 
         }
 
-        // Movement input
         if (!isBlocking)
         {
             input.x = Input.GetAxisRaw("Horizontal");
-            if (Mathf.Abs(input.x) > 0.1f) 
-            {
-                isWalking = true;
-                Vector3 targetPos = transform.position;
-                targetPos.x += input.x * moveSpeed * Time.deltaTime;
-                transform.position = targetPos; 
-            }
-            else
-            {
-                isWalking = false; 
-            }
-
+        }
+        else
+        {
+            input.x = 0;
+            isWalking = false;
         }
 
         // Attack input

@@ -3,27 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class CharacterData{
+    public string characterName;
+    public GameObject[] characterPrefabs;
+
+}
+
 public class CharacterSelection : MonoBehaviour
 {
+
+    public List<CharacterData> characters = new List<CharacterData>();
     private string currentSelection = "";
     public LoadingScreen loadingScreen;
 
-    public void Start(){
+    void Start(){
         loadingScreen = FindObjectOfType<LoadingScreen>();
     }
-    public void SelectCharacter1()
+    public void SelectCharacter(int index)
     {
-        PlayerPrefs.SetString("SelectedCharacter", "Ciara");
-        currentSelection = "Ciara";
-        Debug.Log("Selected Ciara, Testing: " + currentSelection);
+        if (index < 0 || index >= characters.Count)
+        {
+            Debug.LogWarning("Character index out of range.");
+            return;
+        }
+        string selectedName = characters[index].characterName;
+         PlayerPrefs.SetInt("SelectedCharacterIndex", index);   
+        PlayerPrefs.SetString("SelectedCharacter", selectedName); 
+
+        for (int i = 0; i < characters.Count; i++)
+        {
+            PlayerPrefs.SetString($"CharacterName_{i}", characters[i].characterName);
+        }
+
+        PlayerPrefs.Save(); 
+
+        currentSelection = selectedName;
+        Debug.Log("Selected: " + currentSelection + " (index " + index + ")");
     }
 
-    public void SelectCharacter2()
-    {
-        PlayerPrefs.SetString("SelectedCharacter", "Vincent");
-        currentSelection = "Vincent";
-        Debug.Log("Selected Vincent, Testing: " + currentSelection);
-    }
 
     public string GetSelectedCharacter()
     {
@@ -32,7 +50,6 @@ public class CharacterSelection : MonoBehaviour
 
     public void OnBackButtonPressed()
     {
-        // Clear the current selection and re-enable hover effects
         PlayerPrefs.DeleteKey("SelectedCharacter");
         currentSelection = "";
         Debug.Log("Returning to previous screen and clearing selection. Testing: " + currentSelection);
