@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Testing Enviroment.unity
-    guid: 7fd50288fb0f00943b9f8e614dde2006
-  - enabled: 1
     path: Assets/Scenes/Rhytmic Gymnastics.unity
     guid: f457db285636d4c41a9694c0c6a5fc09
   m_configObjects: {}
