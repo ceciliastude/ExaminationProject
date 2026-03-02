@@ -109,10 +109,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputPrefabs:
-  - {fileID: 1658240469988245261, guid: ee4d3c2a09e51cf41918b0735868eac2, type: 3}
-  - {fileID: 1936218096914142095, guid: 3e13d5534252378409dfff8f7b09a723, type: 3}
-  - {fileID: 6776673853962027936, guid: fa1cc40f4b73d5c45b6aa383cc0a119d, type: 3}
-  - {fileID: 5249925378907923046, guid: 862b639a1bf38e74c8501e211c563f5b, type: 3}
+  - {fileID: 6776673853962027936, guid: d314f3af46c69a34099c447d47afdb88, type: 3}
+  - {fileID: 6776673853962027936, guid: a85093eb985a1c64fbd4c1c60fa0626c, type: 3}
+  - {fileID: 6776673853962027936, guid: 426eb5bfacf165044b7d3a218e6b3cb4, type: 3}
+  - {fileID: 6776673853962027936, guid: 5031662a9a2038f4caa781c4bb8e7bee, type: 3}
   - {fileID: 6776673853962027936, guid: b7dec25077fa6a9488fb66d6018cd7b2, type: 3}
   currentInputIndex: 0
   comboDuration: 7

@@ -18,11 +18,7 @@ public class ComboInputHandler : MonoBehaviour
         // Assign expected key based on prefab name
         string prefabName = gameObject.name.ToLower();
 
-        if (prefabName.Contains("arrowup")) expectedKey = KeyCode.UpArrow;
-        else if (prefabName.Contains("arrowdown")) expectedKey = KeyCode.DownArrow;
-        else if (prefabName.Contains("arrowleft")) expectedKey = KeyCode.LeftArrow;
-        else if (prefabName.Contains("arrowright")) expectedKey = KeyCode.RightArrow;
-        else if (prefabName.Contains("space")) expectedKey = KeyCode.Space;
+        if (prefabName.Contains("space")) expectedKey = KeyCode.Space;
         else if (prefabName.Contains("w")) expectedKey = KeyCode.W;
         else if (prefabName.Contains("a")) expectedKey = KeyCode.A;
         else if (prefabName.Contains("s")) expectedKey = KeyCode.S;

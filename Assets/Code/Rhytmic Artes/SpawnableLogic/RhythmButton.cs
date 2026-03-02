@@ -20,6 +20,8 @@ public class RhythmButton : MonoBehaviour
     public Image defaultImage;
     public Image pressedImage;
     public Image circleImage;
+    public Image starBK;
+    public GameObject starAnimation;
 
     private bool clicked = false;
     private float despawnTimer = -1f;
@@ -90,13 +92,22 @@ public void Initialize(TMP_Text scoreTextRef, Conductor conductorRef, PlayerAnim
         // Hit animation after pressing
         if (clicked)
         {
-            if (circleImage != null)
+            if (starBK != null)
             {
-                circleImage.transform.localScale = Vector3.Lerp(
-                    circleImage.transform.localScale,
-                    new Vector3(0.6f, 0.6f, 1f),
+                    starBK.transform.localScale = Vector3.Lerp(
+                    starBK.transform.localScale,
+                    new Vector3(4.6f, 4.6f, 1f),
                     growSpeed * Time.deltaTime
-                );
+                    );
+                    starBK.transform.Rotate (new Vector3 (0, 0, 0.3f));
+            }
+            if (starAnimation != null)
+            {
+                    starAnimation.transform.localScale = Vector3.Lerp(
+                    starAnimation.transform.localScale,
+                    new Vector3(2.6f, 2.6f, 1f),
+                    growSpeed * Time.deltaTime
+                    );
             }
 
             if (canvasGroup != null)
